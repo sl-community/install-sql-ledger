@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+Alias /{{sl_app_name}}/ "{{sl_install_path}}/"
+
+<Directory {{sl_install_path}}>
+
+    AddHandler cgi-script .pl
+
+    Options ExecCGI Includes FollowSymlinks
+
+    Require all granted
+
+</Directory>
+
+
+# Needed on Debian 9:
+SetEnv PERL5LIB {{sl_install_path}}

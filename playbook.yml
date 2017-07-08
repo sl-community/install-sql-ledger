@@ -1,0 +1,120 @@
+---
+
+- hosts: all
+
+  vars:
+    sl_github_url: https://github.com/ledger123/runmyaccounts.git
+
+    sl_install_path: /srv/www/webapps/ledger123
+
+    sl_app_name: ledger123
+    
+    sl_apache_user:  www-data
+    sl_apache_group: www-data
+
+    
+  tasks:
+
+    # - pause:
+    #     prompt: >-
+    #       Will now install SQL Ledger on
+    #       {{ansible_lsb.description}}
+    #       [ENTER]
+    
+    - assert:
+        that: >
+          ansible_distribution == "Debian"
+          and
+          ansible_distribution_major_version >= 8
+
+          
+    - name: Install some generally required packages
+      apt: name={{item}}
+      with_items:
+        - git
+        - unzip
+
+
+    #######################################################################
+
+    - name: Install Apache
+      apt: name={{item}}
+      with_items:
+        - apache2
+
+    - name: Enable Apache modules
+      apache2_module: name={{item}} state=present
+      with_items:
+        - cgid
+      notify:
+        - restart apache
+
+    - name: Push configuration
+      template:
+        src: apache/sql-ledger.conf.j2
+        dest: /etc/apache2/conf-available/sql-ledger.conf
+      notify:
+        - reload apache
+
+    - name: a2enconf
+      command: a2enconf sql-ledger.conf
+      args:
+        creates: /etc/apache2/conf-enabled/sql-ledger.conf
+      notify:
+        - reload apache
+
+    - meta: flush_handlers
+
+    #######################################################################
+    
+    - name: Create install path
+      file:
+        path: '{{sl_install_path}}'
+        mode: 0770
+        owner: '{{sl_apache_user}}'
+        group: '{{sl_apache_group}}'
+        state: directory
+
+    - name: Clone git repo
+      git:
+        repo: '{{sl_github_url}}'
+        dest: /tmp/{{sl_app_name}}
+      register: git_clone
+
+
+    - name: Copy to target location
+      shell: cp -rv /tmp/{{sl_app_name}}/* '{{sl_install_path}}'
+      when: git_clone.changed
+
+    - name: Fix permissions
+      file:
+        path: '{{sl_install_path}}'
+        owner: '{{sl_apache_user}}'
+        group: '{{sl_apache_group}}'
+        recurse: yes
+
+    - name: Create users and spool directory
+      file:
+        path: '{{sl_install_path}}/{{item}}'
+        owner: '{{sl_apache_user}}'
+        group: '{{sl_apache_group}}'
+        state: directory
+      with_items:
+        - users
+        - spool
+
+        
+
+    - name: Install needed Perl Modules via apt
+      apt: name={{item}}
+      with_items:
+        - libdbi-perl
+        - libdbd-pg-perl
+
+
+
+  handlers:
+    - name: reload apache
+      service:  name=apache2 state=reloaded
+    - name: restart apache
+      service:  name=apache2 state=restarted
