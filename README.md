@@ -10,7 +10,7 @@ a Debian root server (supported Debian versions: 8 and 9)
 Install needed packages:
 
 ```sh
-apt install git (ansible)
+apt install git ansible
 ```
 
 
