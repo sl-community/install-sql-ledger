@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ansible-playbook -i localhost, playbook.yml
+ansible-playbook -i localhost, -c local playbook.yml
