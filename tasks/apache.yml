@@ -10,6 +10,7 @@
   with_items:
     - ssl
     - cgid
+    - rewrite
   notify:
     - restart apache
 
@@ -35,6 +36,21 @@
   notify:
     - restart apache
 
+
+- name: Enable redirect to https
+  blockinfile:
+    path: /etc/apache2/sites-available/000-default.conf
+    insertafter: '^<VirtualHost'
+    block: |
+      {% if rma_force_https %}
+      RewriteEngine On
+      RewriteCond  %{REQUEST_URI}  ^/{{rma_app_name}}
+      RewriteRule  .?    https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+      {% else %}
+      # You should consider enforcing https for /{{rma_app_name}} here.
+      {% endif %}
+  notify:
+    - reload apache
     
 - meta: flush_handlers
 
