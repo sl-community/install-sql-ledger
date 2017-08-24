@@ -14,18 +14,24 @@ rma_app_name: rma
 rma_installation_path: /srv/www/webapps/rma
 
 
-# The PostgreSQL role (=user) internally used by the application.
-# The role will be equipped with CREATE DATABASE privileges.
-# "sql-ledger" is a typical choice here. Just leave it, unless you
-# have special requirements.
+# Should the application always redirect to https:// ?
 
-rma_postgresql_role: sql-ledger
+rma_force_https: yes
 
 
 # The application superuser passwort for 'http://YOUR.SERVER/APPNAME/admin.pl'.
 # If you don't set one, you will not get any administrative access!
 
 rma_admin_password:  # no default
+
+
+# The PostgreSQL role (=user) internally used by the application.
+# The role will be equipped with CREATE DATABASE privileges.
+# "sql-ledger" is a typical choice here.
+# If you have special requirements, then change it.
+
+rma_postgresql_role: sql-ledger
+
 
 
 
