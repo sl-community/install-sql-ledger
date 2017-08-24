@@ -5,6 +5,7 @@
   with_items:
     - libdbi-perl
     - libdbd-pg-perl
+    - libdbix-simple-perl
 
 - name: Create installation path
   file:
