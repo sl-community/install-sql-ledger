@@ -6,8 +6,8 @@ a Debian root server.
 Supported Debian versions:
 
 
-* Debian 8 (jessie)
 * Debian 9 (stretch)
+* Debian 8 (jessie)
 
 
 ## Installation prerequisites:
