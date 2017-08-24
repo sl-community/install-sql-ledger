@@ -1,0 +1,22 @@
+---
+
+- assert:
+    that:
+      - ansible_distribution == "Debian"
+      - ansible_distribution_major_version|int >= 8
+      - ansible_distribution_major_version|int <= 9
+
+
+- name: Update apt cache if needed
+  apt: update_cache=yes cache_valid_time=3600
+
+  
+- name: Install some generally required/recommmended packages
+  apt: name={{item}}
+  with_items:
+    # Sometimes not available on minimal systems:
+    - man   
+    - unzip
+    - bash-completion
+     # For PostgreSQL management via ansible/python:
+    - python-psycopg2

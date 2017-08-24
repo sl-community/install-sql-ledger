@@ -1,0 +1,40 @@
+---
+
+- name: Install Apache
+  apt: name={{item}}
+  with_items:
+    - apache2
+
+- name: Enable Apache modules
+  apache2_module: name={{item}} state=present
+  with_items:
+    - ssl
+    - cgid
+  notify:
+    - restart apache
+
+- name: Push configuration
+  template:
+    src: apache/rma.conf.j2
+    dest: /etc/apache2/conf-available/rma.conf
+  notify:
+    - reload apache
+
+- name: a2enconf
+  command: a2enconf rma.conf
+  args:
+    creates: /etc/apache2/conf-enabled/rma.conf
+  notify:
+    - reload apache
+
+
+- name: Enable Debian default SSL vhost
+  command: a2ensite default-ssl
+  args:
+    creates: /etc/apache2/sites-enabled/default-ssl.conf
+  notify:
+    - restart apache
+
+    
+- meta: flush_handlers
+

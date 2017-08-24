@@ -1,0 +1,6 @@
+# SQL-Ledger members
+
+{% if rma_admin_password %}
+[root login]
+password={{ crypted_pw.stdout }}
+{% endif %}

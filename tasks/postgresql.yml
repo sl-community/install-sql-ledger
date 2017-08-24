@@ -1,0 +1,48 @@
+---
+
+- name: Install PostgreSQL
+  apt: name={{item}}
+  with_items:
+    - postgresql
+
+
+- block:
+    - name: Create pg user
+      postgresql_user:
+        name: '{{rma_postgresql_role}}'
+        role_attr_flags: CREATEDB
+        
+    # - name: Create pg database
+    #   postgresql_db:
+    #     name: '{{rma_postgresql_dbname}}'
+
+    - name: Find path of pg_hba.conf
+      command: psql -t -P format=unaligned -c 'show hba_file'
+      register: pg_hba_conf
+      changed_when: false
+
+  become: yes
+  become_user: postgres
+  become_method: su
+
+
+- name: Make pg_hba.conf entry
+  lineinfile:
+    dest: '{{pg_hba_conf.stdout}}'
+    line: "local\tall\t\t{{rma_postgresql_role}}\t\t\t\ttrust"
+    insertafter: '^# TYPE'
+  notify:
+    - reload postgresql
+
+  
+- name: Create needed locales
+  locale_gen:
+    name: '{{item}}'
+  with_items:
+    - "de_CH"
+  notify:
+    - restart postgresql
+
+
+- meta: flush_handlers
+

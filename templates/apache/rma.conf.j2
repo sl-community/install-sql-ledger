@@ -1,0 +1,24 @@
+# {{ ansible_managed }}
+
+Alias /{{rma_app_name}} "{{rma_installation_path}}"
+
+<Directory {{rma_installation_path}}>
+
+    AddHandler cgi-script .pl
+
+    Options ExecCGI Includes FollowSymlinks
+
+    Require all granted
+
+</Directory>
+
+
+<DirectoryMatch "^{{rma_installation_path}}/(users|bin|SL|sql|templates|locale)" >
+
+    Require all denied
+
+</DirectoryMatch>
+
+
+# Needed on Debian 9:
+SetEnv PERL5LIB {{rma_installation_path}}

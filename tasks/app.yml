@@ -1,0 +1,60 @@
+---
+
+- name: Install needed Perl Modules
+  apt: name={{item}}
+  with_items:
+    - libdbi-perl
+    - libdbd-pg-perl
+
+- name: Create installation path
+  file:
+    path: '{{rma_installation_path}}'
+    mode: 0770
+    owner: www-data
+    group: www-data
+    state: directory
+  register: install_path
+
+- name: Clone git repo
+  git:
+    repo: '{{rma_github_url}}'
+    dest: /tmp/{{rma_app_name}}
+  register: git_clone
+
+
+- name: Copy to target location
+  shell: cp -rv /tmp/{{rma_app_name}}/* '{{rma_installation_path}}'
+  when: git_clone.changed or install_path.changed
+
+- name: Fix permissions
+  file:
+    path: '{{rma_installation_path}}'
+    owner: www-data
+    group: www-data
+    recurse: yes
+
+- name: Create users and spool directory
+  file:
+    path: '{{rma_installation_path}}/{{item}}'
+    owner: www-data
+    group: www-data
+    state: directory
+  with_items:
+    - users
+    - spool
+
+    
+- name: Crypt admin password
+  # The hash needs to be 'root'... WTF...
+  command: perl -e "print crypt '{{ rma_admin_password }}', 'root'"
+  register: crypted_pw
+  changed_when: false
+
+  
+- name: Create initial install users files
+  template:
+    src: app/members.j2
+    dest: '{{rma_installation_path}}/users/members'
+    owner: www-data
+    group: www-data
+    #force: no

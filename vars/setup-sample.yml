@@ -1,0 +1,36 @@
+---
+
+# The name of the application when accessing it via the web.
+# If you choose e.g. 'rma', the application will be accessible 
+# via 'http://YOUR.SERVER/rma'.
+
+rma_app_name: rma
+
+
+# The installation path.
+# It does not necessarily have to end with the application name,
+# but typically it does.
+
+rma_installation_path: /srv/www/webapps/rma
+
+
+# The PostgreSQL role (=user) internally used by the application.
+# The role will be equipped with CREATE DATABASE privileges.
+# "sql-ledger" is a typical choice here. Just leave it, unless you
+# have special requirements.
+
+rma_postgresql_role: sql-ledger
+
+
+# The application superuser passwort for 'http://YOUR.SERVER/APPNAME/admin.pl'.
+# If you don't set one, you will not get any administrative access!
+
+rma_admin_password:  # no default
+
+
+
+######################################################################
+# You should change the following settings only in very special cases:
+######################################################################
+
+rma_github_url: https://github.com/ledger123/runmyaccounts.git
