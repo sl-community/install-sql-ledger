@@ -1,7 +1,13 @@
 # install_rma_cv
 
 Ansible-based installation of Run my Accounts (community version) on
-a Debian root server (supported Debian versions: 8 and 9)
+a Debian root server.
+
+Supported Debian versions:
+
+
+* Debian 8 (wheezy)
+* Debian 9 (stretch)
 
 
 ## Installation prerequisites:
