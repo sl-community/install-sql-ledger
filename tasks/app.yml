@@ -6,6 +6,7 @@
     - libdbi-perl
     - libdbd-pg-perl
     - libdbix-simple-perl
+    - libgd-graph-perl
 
 - name: Create installation path
   file:
