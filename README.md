@@ -18,11 +18,21 @@ specially configured Apache or PostgreSQL services, this installer may not be
 right for you.
 
 
-Install needed packages:
+On Debian 9, just install these packages:
 
 ```sh
 apt install git ansible python
 ```
+
+
+On Debian 8, the shipped version of ansible is too old. Therefore:
+
+```sh
+apt install git python-pip python-paramiko python-yaml python-jinja2
+
+pip install ansible
+```
+
 
 
 ## Installation:
