@@ -20,7 +20,7 @@ rma_force_https: yes
 
 
 # The application superuser passwort for 'http://YOUR.SERVER/APPNAME/admin.pl'.
-# If you don't set one, you will not get any administrative access!
+# You *MUST* set this -- otherwise the installer will quit with an error!
 
 rma_admin_password:  # no default
 
