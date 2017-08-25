@@ -8,6 +8,10 @@
     - libdbix-simple-perl
     - libgd-graph-perl
 
+- name: Install needed LaTeX packages
+  apt: name=texlive-lang-{{item}}
+  with_items: '{{_texlive_languages}}
+
 - name: Create installation path
   file:
     path: '{{rma_installation_path}}'

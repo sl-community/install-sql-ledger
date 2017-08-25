@@ -33,6 +33,15 @@ rma_admin_password:  # no default
 rma_postgresql_role: sql-ledger
 
 
+# LaTeX language support. Choose your needed language(s) here.
+# (See `apt-cache texlive-lang` for all possibilities.)
+
+rma_texlive_languages:
+  - german
+  - english
+  # - french
+  # - spanish
+  # - chinese
 
 
 ######################################################################
