@@ -2,16 +2,16 @@
 
 # The name of the application when accessing it via the web.
 # If you choose e.g. 'rma', the application will be accessible 
-# via 'http://YOUR.SERVER/rma'.
+# via 'http://YOUR.SERVER/sql-ledger'.
 
-rma_app_name: rma
+rma_app_name: sql-ledger
 
 
 # The installation path.
 # It does not necessarily have to end with the application name,
 # but typically it does.
 
-rma_installation_path: /srv/www/webapps/rma
+rma_installation_path: /srv/www/webapps/sql-ledger
 
 
 # Should the application always redirect to https:// ?
@@ -21,8 +21,9 @@ rma_force_https: yes
 
 # The application superuser passwort for 'http://YOUR.SERVER/APPNAME/admin.pl'.
 # You *MUST* set this -- otherwise the installer will quit with an error!
+# To set the password delete '# no default' and enter your password instead.
 
-rma_admin_password:  # no default
+rma_admin_password: # no default
 
 
 # The PostgreSQL role (=user) internally used by the application.
@@ -48,4 +49,4 @@ rma_texlive_languages:
 # You should change the following settings only in very special cases:
 ######################################################################
 
-rma_github_url: https://github.com/ledger123/runmyaccounts.git
+rma_github_url: https://github.com/sl-community/runmyaccounts.git

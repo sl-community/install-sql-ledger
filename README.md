@@ -1,4 +1,4 @@
-# install_rma_cv
+# install-sql-ledger
 
 Ansible-based installation of Run my Accounts (community version) on
 a Debian root server.
@@ -57,3 +57,20 @@ Start installation procedure:
 ```sh
 bash install.sh
 ```
+
+## After installation:
+
+Open your Web browser and...
+
+... access SQL-Ledger admin interface: 
+
+```sh
+https://<IP_ADDRESS>/sql-ledger/admin.pl
+```
+
+...access SQL-Ledger user interface:
+
+```sh
+https://<IP_ADDRESS>/sql-ledger/login.pl
+```
+
