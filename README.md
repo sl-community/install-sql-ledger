@@ -40,8 +40,8 @@ pip install ansible
 Clone this repository and ch'dir into project folder:
 
 ```sh
-git clone https://github.com/Salvor42/install_rma_cv.git
-cd install_rma_cv
+git clone https://github.com/sl-community/install-sql-ledger.git
+cd install-sql-ledger
 ```
 
 Copy the setup variables file and eventually make some changes in `setup.yml`:
