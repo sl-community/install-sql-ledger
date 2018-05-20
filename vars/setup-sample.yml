@@ -19,7 +19,7 @@ rma_installation_path: /srv/www/webapps/sql-ledger
 rma_force_https: yes
 
 
-# The application superuser passwort for 'http://YOUR.SERVER/APPNAME/admin.pl'.
+# The application superuser password for 'http://YOUR.SERVER/APPNAME/admin.pl'.
 # You *MUST* set this -- otherwise the installer will quit with an error!
 # To set the password delete '# no default' and enter your password instead.
 
@@ -35,7 +35,7 @@ rma_postgresql_role: sql-ledger
 
 
 # LaTeX language support. Choose your needed language(s) here.
-# (See `apt-cache texlive-lang` for all possibilities.)
+# (See `apt-cache search texlive-lang` for all possibilities.)
 
 rma_texlive_languages:
   - german
