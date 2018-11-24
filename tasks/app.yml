@@ -1,17 +1,5 @@
 ---
 
-- name: Install needed Perl Modules
-  apt:
-    name:
-      - libdbi-perl
-      - libdbd-pg-perl
-      - libdbix-simple-perl
-      - libgd-graph-perl
-
-- name: Install needed LaTeX packages
-  apt: name=texlive-lang-{{item}}
-  with_items: '{{ rma_texlive_languages }}'
-
 - name: Create installation path
   file:
     path: '{{rma_installation_path}}'
@@ -65,3 +53,29 @@
     owner: www-data
     group: www-data
     force: no
+
+- name: Install jq
+  apt:
+    name: jq
+
+
+- name: Get names of packages from dist.json
+  shell: |
+    cat {{rma_installation_path}}/dist.json | jq -r '.[] | .package.debian9'
+  register: jq_cmd
+
+    
+- name: Install needed packages
+  apt:
+    name:
+      - libdbi-perl
+      - libdbd-pg-perl
+      - libdbix-simple-perl
+      - libgd-graph-perl
+
+
+
+- name: Install needed LaTeX packages
+  apt: name=texlive-lang-{{item}}
+  with_items: '{{ rma_texlive_languages }}'
+
