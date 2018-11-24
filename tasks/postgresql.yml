@@ -1,10 +1,8 @@
 ---
 
 - name: Install PostgreSQL
-  apt: name={{item}}
-  with_items:
-    - postgresql
-
+  apt:
+    name: postgresql
 
 - block:
     - name: Create pg user
@@ -12,10 +10,6 @@
         name: '{{rma_postgresql_role}}'
         role_attr_flags: CREATEDB
         
-    # - name: Create pg database
-    #   postgresql_db:
-    #     name: '{{rma_postgresql_dbname}}'
-
     - name: Find path of pg_hba.conf
       command: psql -t -P format=unaligned -c 'show hba_file'
       register: pg_hba_conf
@@ -45,4 +39,3 @@
 
 
 - meta: flush_handlers
-

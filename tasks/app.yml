@@ -1,12 +1,12 @@
 ---
 
 - name: Install needed Perl Modules
-  apt: name={{item}}
-  with_items:
-    - libdbi-perl
-    - libdbd-pg-perl
-    - libdbix-simple-perl
-    - libgd-graph-perl
+  apt:
+    name:
+      - libdbi-perl
+      - libdbd-pg-perl
+      - libdbix-simple-perl
+      - libgd-graph-perl
 
 - name: Install needed LaTeX packages
   apt: name=texlive-lang-{{item}}
@@ -24,6 +24,7 @@
 - name: Clone git repo
   git:
     repo: '{{rma_github_url}}'
+    version: '{{rma_github_branch | default(omit)}}'
     dest: /tmp/{{rma_app_name}}
   register: git_clone
 
@@ -51,7 +52,7 @@
 
     
 - name: Crypt admin password
-  # The hash needs to be 'root'... WTF...
+  # The salt needs to be 'root':
   command: perl -e "print crypt '{{ rma_admin_password }}', 'root'"
   register: crypted_pw
   changed_when: false

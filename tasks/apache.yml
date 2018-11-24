@@ -1,9 +1,8 @@
 ---
 
 - name: Install Apache
-  apt: name={{item}}
-  with_items:
-    - apache2
+  apt:
+    name: apache2
 
 - name: Enable Apache modules
   apache2_module: name={{item}} state=present
