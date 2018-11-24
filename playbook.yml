@@ -8,19 +8,18 @@
     - include_vars: setup.yml
       tags: always
       
-    - include: tasks/prereqs.yml
+    - import_tasks: tasks/prereqs.yml
       tags: prereqs
 
-    - include: tasks/apache.yml
+    - import_tasks: tasks/apache.yml
       tags: apache
 
-    - include: tasks/postgresql.yml
+    - import_tasks: tasks/postgresql.yml
       tags: [pg, postgresql]
 
-    - include: tasks/app.yml
+    - import_tasks: tasks/app.yml
       tags: app
 
       
   handlers:
-    - include: handlers/main.yml
-      static: true
+    - import_tasks: handlers/main.yml
