@@ -17,11 +17,22 @@ We assume an essentially unconfigured server. If you are already running
 specially configured Apache or PostgreSQL services, this installer may not be
 right for you.
 
-
-Now, just install these packages:
+First we need a more recent version of Ansible. We use the version
+from the Backports repository:
 
 ```sh
-apt install git ansible python
+echo "deb http://ftp.debian.org/debian stretch-backports main" \
+     >/etc/apt/sources.list.d/backports.list
+apt update
+
+apt install -t stretch-backports ansible
+```
+
+
+And (of course) we need git:
+
+```sh
+apt install git
 ```
 
 ## Installation:
