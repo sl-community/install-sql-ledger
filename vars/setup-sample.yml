@@ -1,7 +1,7 @@
 ---
 
 # The name of the application when accessing it via the web.
-# If you choose e.g. 'rma', the application will be accessible 
+# If you choose e.g. 'sql-ledger', the application will be accessible 
 # via 'http://YOUR.SERVER/sql-ledger'.
 
 rma_app_name: sql-ledger
