@@ -62,20 +62,18 @@
 - name: Get names of packages from dist.json
   shell: |
     cat {{rma_installation_path}}/dist.json | jq -r '.[] | .package.debian9'
+  changed_when: false
   register: jq_cmd
 
-    
-- name: Install needed packages
+- name: Output names of detected packages
+  debug: var=jq_cmd.stdout_lines
+
+
+- name: Install required packages
   apt:
-    name:
-      - libdbi-perl
-      - libdbd-pg-perl
-      - libdbix-simple-perl
-      - libgd-graph-perl
+    name: '{{jq_cmd.stdout_lines}}'
 
 
-
-- name: Install needed LaTeX packages
+- name: Install required LaTeX packages
   apt: name=texlive-lang-{{item}}
   with_items: '{{ rma_texlive_languages }}'
-
