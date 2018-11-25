@@ -17,6 +17,9 @@
     - import_tasks: tasks/postgresql.yml
       tags: [pg, postgresql]
 
+    - import_tasks: tasks/clone.yml
+      tags: [clone, git]
+
     - import_tasks: tasks/app.yml
       tags: app
 
