@@ -61,7 +61,7 @@ Start installation procedure:
 ## Installation parameters (interesting for developers)
 
 Any parameters after `install.sh` are passed through to the internal 
-`ansible-playbook`-command. Mainly useful should be `-t <TAG>` calls
+`ansible-playbook`-command. Especially useful should be `-t <TAG>` calls
 (see `playbook.yml` for all available tags).
 
 For example, 
@@ -70,7 +70,8 @@ For example,
 ./install.sh -t clone
 ```
 
-would only process the "git clone"-Part of the installation procedure.
+would only process the "git clone"-part of the installation procedure
+(which is handy when you change the branch).
 
 
 
