@@ -55,7 +55,7 @@ cp vars/setup-sample.yml vars/setup.yml
 Start installation procedure:
 
 ```sh
-bash install.sh
+./install.sh
 ```
 
 ## After installation:
