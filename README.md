@@ -58,17 +58,36 @@ Start installation procedure:
 ./install.sh
 ```
 
+## Installation parameters (interesting for developers)
+
+Any parameters after `install.sh` are passed through to the internal 
+`ansible-playbook`-command. Mainly useful should be `-t <TAG>` calls
+(see `playbook.yml` for all available tags).
+
+For example, 
+
+```sh
+./install.sh -t clone
+```
+
+would only process the "git clone"-Part of the installation procedure.
+
+
+
+
+
+
 ## After installation:
 
-Open your Web browser and...
+Open your Web browser and ...
 
-... access SQL-Ledger admin interface: 
+... access SQL-Ledger admin interface:
 
 ```sh
 https://<IP_ADDRESS>/sql-ledger/admin.pl
 ```
 
-...access SQL-Ledger user interface:
+... access SQL-Ledger user interface:
 
 ```sh
 https://<IP_ADDRESS>/sql-ledger/login.pl

@@ -11,7 +11,7 @@
 - name: Clone git repo
   git:
     repo: '{{rma_github_url}}'
-    version: '{{rma_github_branch | default(omit)}}'
+    version: '{{rma_github_branch}}'
     dest: /tmp/{{rma_app_name}}
   register: git_clone
 
