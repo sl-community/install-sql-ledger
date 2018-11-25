@@ -50,4 +50,4 @@ rma_texlive_languages:
 ######################################################################
 
 rma_github_url: https://github.com/sl-community/rmac.git
-rma_github_branch: # no value means: master
+rma_github_branch: master
