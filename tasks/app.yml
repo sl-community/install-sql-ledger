@@ -53,5 +53,7 @@
 
 
 - name: Install required LaTeX packages
-  apt: name=texlive-lang-{{item}}
+  apt:
+    name: texlive-lang-{{item}}
   with_items: '{{ rma_texlive_languages }}'
+  when: rma_texlive_languages != none
