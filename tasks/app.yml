@@ -39,7 +39,9 @@
 
 - name: Get names of packages from dist.json
   shell: |
-    cat {{rma_installation_path}}/dist.json | jq -r '.[] | .package.debian9'
+    cat {{rma_installation_path}}/dist.json |
+    jq -r '.[] | .package.debian9' |
+    grep -v '^null'
   changed_when: false
   register: jq_cmd
 
