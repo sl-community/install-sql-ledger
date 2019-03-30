@@ -54,6 +54,17 @@
     name: '{{jq_cmd.stdout_lines}}'
 
 
+- name: Get names of non-packaged (Perl Modules) from dist.json
+  shell: |
+    cat {{rma_installation_path}}/dist.json |
+    jq -r '.[] | select(.type=="perlmodule") | select(has("package")|not) | .name'
+    changed_when: false
+  register: jq_cmd
+
+- name: Output names of detected packages
+  debug: var=jq_cmd.stdout_lines
+    
+
 - name: Install required LaTeX packages
   apt:
     name: '{{ rma_texlive_language_packages }}'
