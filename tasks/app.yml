@@ -58,7 +58,7 @@
   shell: |
     cat {{rma_installation_path}}/dist.json |
     jq -r '.[] | select(.type=="perlmodule") | select(has("package")|not) | .name'
-    changed_when: false
+  changed_when: false
   register: jq_cmd
 
 - name: Output names of detected packages
