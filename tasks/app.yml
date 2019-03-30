@@ -63,7 +63,12 @@
 
 - name: Output names of detected packages
   debug: var=jq_cmd.stdout_lines
-    
+
+- name: Install them via cpanm
+  cpanm:
+    name: '{{item}}'
+  with_items: '{{jq_cmd.stdout_lines}}'
+  
 
 - name: Install required LaTeX packages
   apt:
