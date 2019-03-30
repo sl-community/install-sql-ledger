@@ -96,3 +96,9 @@ https://<NAME_OR_IP_ADDRESS>/sql-ledger/admin.pl
 https://<NAME_OR_IP_ADDRESS>/sql-ledger/login.pl
 ```
 
+... access SQL-Ledger setup check:
+
+```sh
+https://<NAME_OR_IP_ADDRESS>/sql-ledger/setup_check.pl
+```
+
