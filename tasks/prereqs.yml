@@ -24,3 +24,4 @@
       - python-psycopg2
       # For installing Perl modules without Debian package:
       - cpanminus
+      - make
