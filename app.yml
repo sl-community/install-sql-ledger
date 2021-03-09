@@ -1,0 +1,76 @@
+---
+- name: Fix permissions
+  file:
+    path: '{{rma_installation_path}}'
+    owner: www-data
+    group: www-data
+    recurse: yes
+
+- name: Create users and spool directory
+  file:
+    path: '{{rma_installation_path}}/{{item}}'
+    owner: www-data
+    group: www-data
+    state: directory
+  with_items:
+    - users
+    - spool
+
+    
+- name: Crypt admin password
+  # The salt needs to be 'root':
+  command: perl -e "print crypt '{{ rma_admin_password }}', 'root'"
+  register: crypted_pw
+  changed_when: false
+
+  
+- name: Create initial install users files
+  template:
+    src: app/members.j2
+    dest: '{{rma_installation_path}}/users/members'
+    owner: www-data
+    group: www-data
+    force: no
+
+- name: Install jq
+  apt:
+    name: jq
+
+
+- name: Get names of packages from dist.json
+  shell: |
+    cat {{rma_installation_path}}/dist.json |
+    jq -r '.[] | .package.debian10' |
+    grep -v '^null'
+  changed_when: false
+  register: jq_cmd
+
+- name: Output names of detected packages
+  debug: var=jq_cmd.stdout_lines
+
+
+- name: Install required packages
+  apt:
+    name: '{{jq_cmd.stdout_lines}}'
+
+
+- name: Get names of non-packaged (Perl Modules) from dist.json
+  shell: |
+    cat {{rma_installation_path}}/dist.json |
+    jq -r '.[] | select(.type=="perlmodule") | select(has("package")|not) | .name'
+  changed_when: false
+  register: jq_cmd
+
+- name: Output names of detected packages
+  debug: var=jq_cmd.stdout_lines
+
+- name: Install them via cpanm
+  cpanm:
+    name: '{{item}}'
+  with_items: '{{jq_cmd.stdout_lines}}'
+  
+
+- name: Install required LaTeX packages
+  apt:
+    name: '{{ rma_texlive_language_packages }}'
+  when: rma_texlive_language_packages != none
