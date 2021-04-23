@@ -6,7 +6,7 @@ a Debian root server.
 Supported Debian version:
 
 
-* Debian 9 (stretch)
+* Debian 10 (buster)
 
 
 
