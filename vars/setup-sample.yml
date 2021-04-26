@@ -11,7 +11,7 @@ rma_app_name: sql-ledger
 # It does not necessarily have to end with the application name,
 # but typically it does.
 
-rma_installation_path: /srv/www/webapps/sql-ledger
+rma_installation_path: /var/www/html/sql-ledger
 
 
 # Should the application always redirect to https:// ?
