@@ -21,11 +21,11 @@ First we need a more recent version of Ansible. We use the version
 from the Backports repository:
 
 ```sh
-echo "deb http://ftp.debian.org/debian stretch-backports main" \
+echo "deb http://deb.debian.org/debian buster-backports main" \
      >/etc/apt/sources.list.d/backports.list
 apt update
 
-apt install -t stretch-backports ansible
+apt install ansible/buster-backports
 ```
 
 
