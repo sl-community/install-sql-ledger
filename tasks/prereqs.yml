@@ -3,8 +3,8 @@
 - assert:
     that:
       - ansible_distribution == "Debian"
-      - ansible_distribution_major_version|int >= 8
-      - ansible_distribution_major_version|int <= 10
+      - ansible_distribution_major_version|int >= 10
+      - ansible_distribution_major_version|int <= 11
 
       - rma_admin_password != none
 
@@ -21,7 +21,7 @@
       - unzip
       - bash-completion
       # For PostgreSQL management via ansible/python:
-      - python-psycopg2
+      - python3-psycopg2
       # For installing Perl modules without Debian package:
       - cpanminus
       - make
