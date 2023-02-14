@@ -70,6 +70,29 @@ would only process the "git clone"-part of the installation procedure
 
 ## After installation:
 
+```sh
+cd /var/www/html/sql-ledger
+```
+
+Create and set permissions for necessary folders
+
+```sh
+mkdir tmp spool users
+```
+
+```sh
+chown -hR www-data.www-data users templates css spool tmp
+```
+
+Copy and if necessary adapt your systems sql-ledger.conf file
+
+```sh
+cp sql-ledger.conf.default sql-ledger.conf
+```
+
+# <YOUR_EDITOR> sql-ledger.conf
+```
+
 Open your Web browser and ...
 
 ... access SQL-Ledger admin interface:
