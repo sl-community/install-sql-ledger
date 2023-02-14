@@ -20,7 +20,7 @@ right for you.
 First (of course) we need git: 
 
 ```sh
-apt install git
+apt install git ansible
 ```
 
 ## Installation:
