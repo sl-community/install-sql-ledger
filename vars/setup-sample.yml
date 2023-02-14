@@ -49,5 +49,5 @@ rma_texlive_language_packages:
 # You should change the following settings only in very special cases:
 ######################################################################
 
-rma_github_url: https://github.com/sl-community/rmac.git
-rma_github_branch: master
+rma_github_url: https://github.com/ledger123/runmyaccounts.git
+rma_github_branch: rmac
