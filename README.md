@@ -88,7 +88,6 @@ Copy and if necessary adapt your systems sql-ledger.conf file
 
 ```sh
 cp sql-ledger.conf.default sql-ledger.conf
-```
 
 # <YOUR_EDITOR> sql-ledger.conf
 ```
