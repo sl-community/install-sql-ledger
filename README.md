@@ -92,6 +92,12 @@ cp sql-ledger.conf.default sql-ledger.conf
 # <YOUR_EDITOR> sql-ledger.conf
 ```
 
+Install full LaTeX Support (this might take some time)
+
+```sh
+apt install latex-full 
+```
+
 Open your Web browser and ...
 
 ... access SQL-Ledger admin interface:
