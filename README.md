@@ -6,7 +6,7 @@ a Debian root server.
 Supported Debian version:
 
 
-* Debian 11 (bullseye)
+* Debian 12 (bookworm)
 
 
 
