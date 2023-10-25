@@ -45,7 +45,7 @@ cp vars/setup-sample.yml vars/setup.yml
 Start installation procedure:
 
 ```sh
-./install.sh
+sudo ./install.sh
 ```
 
 ## Installation parameters (interesting for developers)
