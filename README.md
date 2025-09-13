@@ -3,10 +3,11 @@
 Ansible-based installation of Run my Accounts (community version) on
 a Debian root server.
 
-Supported Debian version:
+Supported Debian versions:
 
 
 * Debian 12 (bookworm)
+* Debian 13 (trixie)
 
 
 
