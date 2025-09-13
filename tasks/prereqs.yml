@@ -4,7 +4,7 @@
     that:
       - ansible_distribution == "Debian"
       - ansible_distribution_major_version|int >= 11
-      - ansible_distribution_major_version|int <= 12
+      - ansible_distribution_major_version|int <= 13
 
       - rma_admin_password != none
 
